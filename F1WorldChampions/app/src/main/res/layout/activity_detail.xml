@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    tools:context=".DetailActivity">
+
+    <ImageView
+        android:id="@+id/img_photo"
+        android:layout_width="150dp"
+        android:layout_height="220dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@string/drivers_photo"
+        android:scaleType="centerCrop"
+        tools:src="@color/cardview_dark_background" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextRightOfPhoto.Label"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/dark_red"
+        android:textSize="20sp"
+        tools:text="@string/drivers_name" />
+
+    <TextView
+        android:id="@+id/tv_entries_label"
+        style="@style/TextRightOfPhoto.Label"
+        android:layout_below="@id/tv_name"
+        android:text="@string/entries"
+        android:textColor="@color/dark_red" />
+
+    <TextView
+        android:id="@+id/tv_entries"
+        style="@style/TextRightOfPhoto"
+        android:layout_below="@id/tv_name"
+        android:layout_toEndOf="@id/tv_entries_label"
+        tools:text="@string/entries" />
+
+    <TextView
+        android:id="@+id/tv_wins_label"
+        style="@style/TextRightOfPhoto.Label"
+        android:layout_below="@id/tv_entries_label"
+        android:text="@string/wins"
+        android:textColor="@color/dark_red" />
+
+    <TextView
+        android:id="@+id/tv_wins"
+        style="@style/TextRightOfPhoto"
+        android:layout_below="@id/tv_entries"
+        android:layout_toEndOf="@id/tv_wins_label"
+        tools:text="@string/wins" />
+
+    <TextView
+        android:id="@+id/tv_podiums_label"
+        style="@style/TextRightOfPhoto.Label"
+        android:layout_below="@id/tv_wins_label"
+        android:text="@string/podiums"
+        android:textColor="@color/dark_red" />
+
+    <TextView
+        android:id="@+id/tv_podiums"
+        style="@style/TextRightOfPhoto"
+        android:layout_below="@id/tv_wins"
+        android:layout_toEndOf="@id/tv_podiums_label"
+        tools:text="@string/podiums" />
+
+    <TextView
+        android:id="@+id/tv_career_points_label"
+        style="@style/TextRightOfPhoto.Label"
+        android:layout_below="@id/tv_podiums_label"
+        android:text="@string/career_points"
+        android:textColor="@color/dark_red" />
+
+    <TextView
+        android:id="@+id/tv_career_points"
+        style="@style/TextRightOfPhoto"
+        android:layout_below="@id/tv_podiums"
+        android:layout_toEndOf="@id/tv_career_points_label"
+        tools:text="@string/podiums" />
+
+    <TextView
+        android:id="@+id/tv_pole_positions_label"
+        style="@style/TextRightOfPhoto.Label"
+        android:layout_below="@id/tv_career_points_label"
+        android:text="@string/pole_positions"
+        android:textColor="@color/dark_red" />
+
+    <TextView
+        android:id="@+id/tv_pole_positions"
+        style="@style/TextRightOfPhoto"
+        android:layout_below="@id/tv_career_points"
+        android:layout_toEndOf="@id/tv_pole_positions_label"
+        tools:text="@string/podiums" />
+
+    <TextView
+        android:id="@+id/tv_fastest_laps_label"
+        style="@style/TextRightOfPhoto.Label"
+        android:layout_below="@id/tv_pole_positions_label"
+        android:text="@string/fastest_laps"
+        android:textColor="@color/dark_red" />
+
+    <TextView
+        android:id="@+id/tv_fastest_laps"
+        style="@style/TextRightOfPhoto"
+        android:layout_below="@id/tv_pole_positions"
+        android:layout_toEndOf="@id/tv_fastest_laps_label"
+        tools:text="@string/podiums" />
+
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_photo"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        tools:text="@string/detail_dummy" />
+
+</RelativeLayout>
