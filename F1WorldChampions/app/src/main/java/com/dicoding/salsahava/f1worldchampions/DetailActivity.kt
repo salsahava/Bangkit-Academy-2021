@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 
 class DetailActivity : AppCompatActivity() {
 
@@ -25,10 +24,10 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        receiveData()
+        manageData()
     }
 
-    private fun receiveData() {
+    private fun manageData() {
         val imgPhotoDt: ImageView = findViewById(R.id.img_photo)
         val tvNameDt: TextView = findViewById(R.id.tv_name)
         val tvEntries: TextView = findViewById(R.id.tv_entries)
@@ -39,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
         val tvFastestLaps: TextView = findViewById(R.id.tv_fastest_laps)
         val tvDetailDt: TextView = findViewById(R.id.tv_detail)
 
-        val photo = intent.getStringExtra(EXTRA_PHOTO)
+        val photo = intent.getIntExtra(EXTRA_PHOTO, -1)
         val name = intent.getStringExtra(EXTRA_NAME)
         val entries = intent.getStringExtra(EXTRA_ENTRIES)
         val wins = intent.getStringExtra(EXTRA_WINS)
@@ -51,7 +50,6 @@ class DetailActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(photo)
-            .apply(RequestOptions().override(350, 550))
             .into(imgPhotoDt)
 
         tvNameDt.text = name
@@ -62,5 +60,7 @@ class DetailActivity : AppCompatActivity() {
         tvPolePositions.text = polePositions
         tvFastestLaps.text = fastestLaps
         tvDetailDt.text = detail
+
+        supportActionBar?.title = name
     }
 }

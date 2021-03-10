@@ -19,17 +19,38 @@ object WorldChampsData {
         "Niki Lauda"
     )
 
-    private val worldChampEntries = intArrayOf(266, 206, 258, 309, 332, 314, 308, 165, 165, 122, 202, 191, 162, 207, 177)
+    private val worldChampEntries =
+        intArrayOf(266, 206, 258, 309, 332, 314, 308, 165, 165, 122, 202, 191, 162, 207, 177)
 
-    private val worldChampWins = intArrayOf(95, 23, 53, 15, 21, 32, 91, 20, 11, 22, 51, 31, 41, 23, 25)
+    private val worldChampWins =
+        intArrayOf(95, 23, 53, 15, 21, 32, 91, 20, 11, 22, 51, 31, 41, 23, 25)
 
-    private val worldChampPodiums = intArrayOf(165, 57, 121, 50, 103, 97, 155, 51, 23, 42, 106, 59, 80, 60, 54)
+    private val worldChampPodiums =
+        intArrayOf(165, 57, 121, 50, 103, 97, 155, 51, 23, 42, 106, 59, 80, 60, 54)
 
-    private val worldChampCareerPoints = arrayOf(3778, 1594.5, 3018, 1235, 1863, 1899, 1566, 420, 235, 360, 798.5, 482, 614, 485.5, 420.5)
+    private val worldChampCareerPoints = arrayOf(
+        3778,
+        1594.5,
+        3018,
+        1235,
+        1863,
+        1899,
+        1566,
+        420,
+        235,
+        360,
+        798.5,
+        482,
+        614,
+        485.5,
+        420.5
+    )
 
-    private val worldChampPolePositions = intArrayOf(98, 30, 57, 8, 18, 22, 68, 26, 13, 20, 33, 32, 65, 24, 24)
+    private val worldChampPolePositions =
+        intArrayOf(98, 30, 57, 8, 18, 22, 68, 26, 13, 20, 33, 32, 65, 24, 24)
 
-    private val worldChampFastestLaps = intArrayOf(53, 20, 38, 8, 46, 23, 77, 25, 9, 19, 41, 30, 19, 23, 24)
+    private val worldChampFastestLaps =
+        intArrayOf(53, 20, 38, 8, 46, 23, 77, 25, 9, 19, 41, 30, 19, 23, 24)
 
     private val worldChampDetails = arrayOf(
         "Sir Lewis Carl Davidson Hamilton MBE HonFREng (born 7 January 1985) is a British racing driver, activist, fashion designer and musician. He currently competes in Formula One for Mercedes, having previously driven for McLaren from 2007 to 2012. In Formula One, Hamilton has won a joint-record seven World Drivers' Championship titles.",

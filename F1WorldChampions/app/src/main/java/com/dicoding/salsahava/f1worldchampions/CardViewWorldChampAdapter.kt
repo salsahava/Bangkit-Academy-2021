@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import org.w3c.dom.Text
 
 class CardViewWorldChampAdapter(private val listWorldChamp: ArrayList<WorldChamp>) :
     RecyclerView.Adapter<CardViewWorldChampAdapter.CardViewViewHolder>() {
@@ -23,7 +22,8 @@ class CardViewWorldChampAdapter(private val listWorldChamp: ArrayList<WorldChamp
         parent: ViewGroup,
         viewType: Int
     ): CardViewViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_cardview_worldchamp, parent, false)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_cardview_worldchamp, parent, false)
         return CardViewViewHolder(view)
     }
 
@@ -38,9 +38,9 @@ class CardViewWorldChampAdapter(private val listWorldChamp: ArrayList<WorldChamp
         val worldChamp = listWorldChamp[position]
 
         Glide.with(holder.itemView.context)
-                .load(worldChamp.photo)
-                .apply(RequestOptions().override(350, 550))
-                .into(holder.imgPhoto)
+            .load(worldChamp.photo)
+            .apply(RequestOptions().override(350, 550))
+            .into(holder.imgPhoto)
 
         holder.tvName.text = worldChamp.name
         holder.tvDetail.text = worldChamp.detail

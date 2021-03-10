@@ -32,7 +32,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="12dp"
             android:layout_toEndOf="@id/img_item_photo"
             android:textColor="@color/dark_red"
             android:textSize="16sp"
@@ -41,9 +41,13 @@
 
         <ToggleButton
             android:id="@+id/btn_favorite"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_toEndOf="@id/tv_item_name" />
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/tv_item_name"
+            android:background="@drawable/favorite_image"
+            android:textOff=""
+            android:textOn="" />
 
         <TextView
             android:id="@+id/tv_item_detail"
@@ -55,7 +59,7 @@
             android:layout_toEndOf="@id/img_item_photo"
             android:ellipsize="end"
             android:maxLines="5"
-            tools:text="@string/detail" />
+            tools:text="@string/detail_dummy" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

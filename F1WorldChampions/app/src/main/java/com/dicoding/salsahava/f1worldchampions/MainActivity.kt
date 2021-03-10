@@ -3,15 +3,13 @@ package com.dicoding.salsahava.f1worldchampions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CompoundButton
-import android.widget.ToggleButton
-import androidx.core.content.ContextCompat
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvWorldChamps: RecyclerView
-    private lateinit var toggleButton: ToggleButton
     private var list: ArrayList<WorldChamp> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,16 +19,18 @@ class MainActivity : AppCompatActivity() {
         rvWorldChamps = findViewById(R.id.rv_worldchamps)
         rvWorldChamps.setHasFixedSize(true)
 
-//        toggleButton = findViewById(R.id.btn_favorite)
-//        toggleButton.isChecked = false
-//        toggleButton.background = ContextCompat.getDrawable(applicationContext, R.drawable.ic_baseline_star_grey_24)
-//        toggleButton.setOnCheckedChangeListener { _, isChecked ->
-//            if (isChecked) toggleButton.background = ContextCompat.getDrawable(applicationContext, R.drawable.ic_baseline_star_yellow_24)
-//            else toggleButton.background = ContextCompat.getDrawable(applicationContext, R.drawable.ic_baseline_star_grey_24)
-//        }
-
         list.addAll(WorldChampsData.listData)
         showRecyclerCardView()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    fun onClickAbout(item: MenuItem) {
+        val aboutIntent = Intent(this@MainActivity, AboutActivity::class.java)
+        startActivity(aboutIntent)
     }
 
     private fun showRecyclerCardView() {
@@ -51,8 +51,14 @@ class MainActivity : AppCompatActivity() {
                     DetailActivity.EXTRA_CAREER_POINTS,
                     data.careerPoints.toString()
                 )
-                detailIntent.putExtra(DetailActivity.EXTRA_POLE_POSITIONS, data.polePositions.toString())
-                detailIntent.putExtra(DetailActivity.EXTRA_FASTEST_LAPS, data.fastestLaps.toString())
+                detailIntent.putExtra(
+                    DetailActivity.EXTRA_POLE_POSITIONS,
+                    data.polePositions.toString()
+                )
+                detailIntent.putExtra(
+                    DetailActivity.EXTRA_FASTEST_LAPS,
+                    data.fastestLaps.toString()
+                )
                 detailIntent.putExtra(DetailActivity.EXTRA_DETAIL, data.detail)
                 startActivity(detailIntent)
             }
