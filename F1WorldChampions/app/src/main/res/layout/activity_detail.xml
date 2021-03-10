@@ -112,7 +112,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/img_photo"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/black"
         android:textSize="16sp"
         tools:text="@string/detail_dummy" />
 

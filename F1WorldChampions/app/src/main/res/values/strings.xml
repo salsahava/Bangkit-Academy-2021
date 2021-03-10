@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">F1WorldChampions</string>
+    <string name="app_name">F1 World Champions</string>
     <string name="drivers_name">Driver\'s Name</string>
     <string name="detail">Detail:</string>
     <string name="entries">Entries:</string>
@@ -9,5 +9,5 @@
     <string name="career_points">Career Points:</string>
     <string name="pole_positions">Pole Positions:</string>
     <string name="fastest_laps">Fastest Laps:</string>
-    <string name="detail_dummy">Sebastian Vettel (born 3 July 1987) is a German racing driver who competes in Formula One for Aston Martin, having previously driven for BMW Sauber, Toro Rosso, Red Bull and Ferrari. Vettel has won four World Drivers\' Championship titles which he won consecutively from 2010 to 2013. He currently holds the record for Formula One's youngest World Champion.</string>
+    <string name="detail_dummy">Sebastian Vettel (born 3 July 1987) is a German racing driver who competes in Formula One for Aston Martin, having previously driven for BMW Sauber, Toro Rosso, Red Bull and Ferrari. Vettel has won four World Drivers\' Championship titles which he won consecutively from 2010 to 2013. He currently holds the record for Formula One\'s youngest World Champion.</string>
 </resources>

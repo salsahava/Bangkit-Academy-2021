@@ -5,7 +5,7 @@ data class WorldChamp(
     var entries: Int = 0,
     var wins: Int = 0,
     var podiums: Int = 0,
-    var careerPoints: Int = 0,
+    var careerPoints: Any = 0,
     var polePositions: Int = 0,
     var fastestLaps: Int = 0,
     var detail: String = "",
