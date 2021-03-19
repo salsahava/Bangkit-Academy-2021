@@ -14,10 +14,10 @@ class ListFragment : Fragment() {
     private lateinit var dataUsername: Array<String>
     private lateinit var dataName: Array<String>
     private lateinit var dataLocation: Array<String>
-    private lateinit var dataRepositories: IntArray
+    private lateinit var dataRepositories: Array<String>
     private lateinit var dataCompany: Array<String>
-    private lateinit var dataFollowers: IntArray
-    private lateinit var dataFollowing: IntArray
+    private lateinit var dataFollowers: Array<String>
+    private lateinit var dataFollowing: Array<String>
     private lateinit var dataAvatar: TypedArray
     private var users = arrayListOf<User>()
 
@@ -40,20 +40,14 @@ class ListFragment : Fragment() {
         showRecyclerList()
     }
 
-    private fun showRecyclerList() {
-        binding.rvUsers.layoutManager = GridLayoutManager(activity, 2)
-        val userAdapter = UserAdapter(users)
-        binding.rvUsers.adapter = userAdapter
-    }
-
     private fun prepare() {
         dataUsername = resources.getStringArray(R.array.username)
         dataName = resources.getStringArray(R.array.name)
         dataLocation = resources.getStringArray(R.array.location)
-        dataRepositories = resources.getIntArray(R.array.repository)
+        dataRepositories = resources.getStringArray(R.array.repository)
         dataCompany = resources.getStringArray(R.array.company)
-        dataFollowers = resources.getIntArray(R.array.followers)
-        dataFollowing = resources.getIntArray(R.array.following)
+        dataFollowers = resources.getStringArray(R.array.followers)
+        dataFollowing = resources.getStringArray(R.array.following)
         dataAvatar = resources.obtainTypedArray(R.array.avatar)
     }
 
@@ -71,5 +65,35 @@ class ListFragment : Fragment() {
             )
             users.add(user)
         }
+    }
+
+    private fun showRecyclerList() {
+        binding.rvUsers.layoutManager = GridLayoutManager(activity, 2)
+        val userAdapter = UserAdapter(users)
+        binding.rvUsers.adapter = userAdapter
+
+        userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: User) {
+                val mDetailUserFragment = DetailFragment()
+
+                val mBundle = Bundle()
+                mBundle.putParcelable(DetailFragment.EXTRA_USER, data)
+
+                mDetailUserFragment.arguments = mBundle
+
+                val mFragmentManager = fragmentManager
+                mFragmentManager?.beginTransaction()?.apply {
+                    replace(
+                        R.id.frame_container,
+                        mDetailUserFragment,
+                        DetailFragment::class.java.simpleName
+                    )
+                    addToBackStack(null)
+                    commit()
+                }
+
+                users.clear()
+            }
+        })
     }
 }

@@ -11,6 +11,12 @@ import com.dicoding.salsahava.githubuser.databinding.ItemUserBinding
 class UserAdapter(private val listUser: ArrayList<User>) :
     RecyclerView.Adapter<UserAdapter.CardViewViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -30,6 +36,10 @@ class UserAdapter(private val listUser: ArrayList<User>) :
 
         holder.tvName.text = user.name
         holder.tvUsername.text = user.username
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -42,5 +52,9 @@ class UserAdapter(private val listUser: ArrayList<User>) :
         var imgAvatar = binding.imgItemPhoto
         var tvName = binding.tvItemName
         var tvUsername = binding.tvItemUsername
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: User)
     }
 }

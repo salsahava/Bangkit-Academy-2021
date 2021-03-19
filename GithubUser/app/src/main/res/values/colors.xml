@@ -10,4 +10,5 @@
     <color name="grey_900">#212121</color>
     <color name="grey_900_light">#484848</color>
     <color name="grey_900_dark">#000000</color>
+    <color name="line_color">#A9A9A9</color>
 </resources>

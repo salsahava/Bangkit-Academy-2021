@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Github Users</string>
+    <string name="followers">FOLLOWERS</string>
+    <string name="following">FOLLOWING</string>
+    <string name="repositories">REPOSITORIES</string>
+    <string name="dummy_location">Sydney, Australia</string>
+    <string name="works_at">Works at</string>
+    <string name="dummy_company">JVMDeveloperID @KotlinID @IDDevOps</string>
 
     <!-- Other string resources-->
 
@@ -106,8 +112,6 @@
         <item>@drawable/user9</item>
         <item>@drawable/user10</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
 

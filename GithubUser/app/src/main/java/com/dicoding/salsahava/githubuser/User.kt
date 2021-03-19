@@ -8,9 +8,9 @@ data class User(
     var username: String,
     var name: String,
     var location: String,
-    var repositories: Int,
+    var repositories: String,
     var company: String,
-    var followers: Int,
-    var following: Int,
+    var followers: String,
+    var following: String,
     var avatar: Int
 ) : Parcelable
