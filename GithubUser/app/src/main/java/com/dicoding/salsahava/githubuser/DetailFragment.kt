@@ -15,7 +15,7 @@ class DetailFragment : Fragment() {
     companion object {
         var EXTRA_USER = "extra_user"
     }
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

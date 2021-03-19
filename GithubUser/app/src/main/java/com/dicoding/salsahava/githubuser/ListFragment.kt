@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dicoding.salsahava.githubuser.databinding.FragmentListBinding
 
@@ -38,6 +39,8 @@ class ListFragment : Fragment() {
         addItem()
 
         showRecyclerList()
+
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     private fun prepare() {

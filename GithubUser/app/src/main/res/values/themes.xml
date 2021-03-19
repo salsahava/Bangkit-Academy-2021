@@ -46,8 +46,4 @@
         <item name="android:background">@color/line_color</item>
     </style>
 
-    <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_brand_logo</item>
-    </style>
-
 </resources>
