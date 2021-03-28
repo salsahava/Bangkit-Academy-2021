@@ -1,1 +1,1 @@
-# Bangkit-Academy-2021
+# Codelabs from Bangkit Academy 2021
