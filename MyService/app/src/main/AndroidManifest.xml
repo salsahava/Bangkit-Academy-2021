@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyService">
         <service
+            android:name=".MyBoundService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
             android:name=".MyJobIntentService"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
