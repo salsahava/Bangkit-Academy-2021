@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -21,9 +22,14 @@
             </intent-filter>
         </receiver>
 
+        <service
+            android:name=".DownloadService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <activity
             android:name=".SmsReceiverActivity"
             android:theme="@style/Theme.Broadcast.SmsReceiver" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
