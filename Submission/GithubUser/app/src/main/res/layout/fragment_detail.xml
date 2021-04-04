@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".DetailFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_avatar"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="24dp"
+        app:civ_border_color="@color/grey_900_light"
+        app:civ_border_width="6dp"
+
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/Detail"
+        android:textColor="@color/grey_900_dark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        style="@style/TextBelowPhoto"
+
+        tools:text="@tools:sample/first_names" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        style="@style/Detail"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/grey_900_light"
+
+        tools:text="@string/dummy_location" />
+
+    <TextView
+        android:id="@+id/tv_company_label"
+        style="@style/Detail"
+        android:layout_marginTop="24dp"
+        android:text="@string/works_at"
+        android:textColor="@color/grey_900_dark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_company"
+        style="@style/TextBelowPhoto"
+
+        tools:text="@string/dummy_company" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <LinearLayout style="@style/HorizontalDetail">
+
+            <TextView
+                android:id="@+id/tv_followers"
+                style="@style/HorizontalNumbers"
+
+                tools:text="@tools:sample/us_zipcodes" />
+
+            <TextView
+                style="@style/Detail"
+                android:text="@string/followers"
+                android:textColor="@color/grey_900_light" />
+
+        </LinearLayout>
+
+        <View style="@style/Line" />
+
+        <LinearLayout style="@style/HorizontalDetail">
+
+            <TextView
+                android:id="@+id/tv_following"
+                style="@style/HorizontalNumbers"
+
+                tools:text="@tools:sample/us_zipcodes" />
+
+            <TextView
+                style="@style/Detail"
+                android:text="@string/following"
+                android:textColor="@color/grey_900_light" />
+
+        </LinearLayout>
+
+        <View style="@style/Line" />
+
+        <LinearLayout style="@style/HorizontalDetail">
+
+            <TextView
+                android:id="@+id/tv_repositories"
+                style="@style/HorizontalNumbers"
+
+                tools:text="@tools:sample/us_zipcodes" />
+
+            <TextView
+                style="@style/Detail"
+                android:text="@string/repositories"
+                android:textColor="@color/grey_900_light" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
