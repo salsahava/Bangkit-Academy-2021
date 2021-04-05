@@ -1,4 +1,4 @@
-package com.dicoding.salsahava.githubuser
+package com.dicoding.salsahava.githubuser.fragment
 
 import android.content.res.TypedArray
 import android.os.Bundle
@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.salsahava.githubuser.R
+import com.dicoding.salsahava.githubuser.User
+import com.dicoding.salsahava.githubuser.UserAdapter
 import com.dicoding.salsahava.githubuser.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
-    private lateinit var binding: FragmentListBinding
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var dataUsername: Array<String>
     private lateinit var dataName: Array<String>
     private lateinit var dataLocation: Array<String>
@@ -27,7 +33,7 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentListBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,7 +44,7 @@ class ListFragment : Fragment() {
         prepare()
         addItem()
 
-        showRecyclerList()
+        showRecyclerList(view)
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
     }
@@ -70,33 +76,23 @@ class ListFragment : Fragment() {
         }
     }
 
-    private fun showRecyclerList() {
+    private fun showRecyclerList(view: View) {
         binding.rvUsers.layoutManager = LinearLayoutManager(activity)
         val userAdapter = UserAdapter(users)
         binding.rvUsers.adapter = userAdapter
 
         userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
-                val mDetailUserFragment = DetailFragment()
-
                 val mBundle = Bundle()
                 mBundle.putParcelable(DetailFragment.EXTRA_USER, data)
 
-                mDetailUserFragment.arguments = mBundle
-
-                val mFragmentManager = fragmentManager
-                mFragmentManager?.beginTransaction()?.apply {
-                    replace(
-                        R.id.frame_container,
-                        mDetailUserFragment,
-                        DetailFragment::class.java.simpleName
-                    )
-                    addToBackStack(null)
-                    commit()
-                }
-
-                users.clear()
+                view.findNavController().navigate(R.id.action_listFragment_to_detailFragment, mBundle)
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

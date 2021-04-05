@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 
-@Suppress("DEPRECATION")
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +16,7 @@ class SplashScreenActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        Handler().postDelayed({
+        Handler(mainLooper).postDelayed({
             val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
             finish()

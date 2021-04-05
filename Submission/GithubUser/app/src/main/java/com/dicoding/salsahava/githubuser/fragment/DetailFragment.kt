@@ -1,4 +1,4 @@
-package com.dicoding.salsahava.githubuser
+package com.dicoding.salsahava.githubuser.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.dicoding.salsahava.githubuser.User
 import com.dicoding.salsahava.githubuser.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
-    private lateinit var binding: FragmentDetailBinding
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         var EXTRA_USER = "extra_user"
@@ -21,7 +23,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
