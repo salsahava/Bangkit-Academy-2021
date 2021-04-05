@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.salsahava.githubuser.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
@@ -71,7 +71,7 @@ class ListFragment : Fragment() {
     }
 
     private fun showRecyclerList() {
-        binding.rvUsers.layoutManager = GridLayoutManager(activity, 2)
+        binding.rvUsers.layoutManager = LinearLayoutManager(activity)
         val userAdapter = UserAdapter(users)
         binding.rvUsers.adapter = userAdapter
 

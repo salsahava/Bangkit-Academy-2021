@@ -31,7 +31,7 @@ class UserAdapter(private val listUser: ArrayList<User>) :
 
         Glide.with(holder.itemView.context)
             .load(user.avatar)
-            .apply(RequestOptions().override(80, 80))
+            .apply(RequestOptions().override(64, 64))
             .into(holder.imgAvatar)
 
         holder.tvName.text = user.name
