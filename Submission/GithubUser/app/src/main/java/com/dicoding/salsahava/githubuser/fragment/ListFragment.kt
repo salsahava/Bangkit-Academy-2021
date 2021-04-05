@@ -1,35 +1,22 @@
 package com.dicoding.salsahava.githubuser.fragment
 
-import android.content.res.TypedArray
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.salsahava.githubuser.*
-import com.dicoding.salsahava.githubuser.UserData.create
 import com.dicoding.salsahava.githubuser.databinding.FragmentListBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.dicoding.salsahava.githubuser.viewmodel.UserListViewModel
 
 class ListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var dataUsername: Array<String>
-    private lateinit var dataName: Array<String>
-    private lateinit var dataLocation: Array<String>
-    private lateinit var dataRepositories: Array<String>
-    private lateinit var dataCompany: Array<String>
-    private lateinit var dataFollowers: Array<String>
-    private lateinit var dataFollowing: Array<String>
-    private lateinit var dataAvatar: TypedArray
+    private lateinit var userListViewModel: UserListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,39 +31,36 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvUsers.setHasFixedSize(true)
 
-        showLoading(true)
+        binding.rvUsers.layoutManager = LinearLayoutManager(activity)
 
-        val githubService = UserData.create()
-        githubService.findUser("salsa").enqueue(object : Callback<SearchResponse> {
-            override fun onResponse(
-                call: Call<SearchResponse>,
-                response: Response<SearchResponse>
-            ) {
-                try {
-                    val userItems = response.body()?.userItem
-                    showLoading(false)
-                    showRecyclerList(view, userItems)
-                } catch (e: Exception) {
-                    Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
-                }
-            }
+        val userAdapter = UserAdapter()
+        userAdapter.notifyDataSetChanged()
+        binding.rvUsers.adapter = userAdapter
 
-            override fun onFailure(call: Call<SearchResponse>, error: Throwable) {
-                Toast.makeText(activity, error.message, Toast.LENGTH_SHORT).show()
+        userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: UserItem) {
+
             }
         })
+
+        manageViewModel(userAdapter)
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
-    private fun showRecyclerList(view: View, userItems: List<UserItem>?) {
-        binding.rvUsers.layoutManager = LinearLayoutManager(activity)
-        val userAdapter = userItems?.let { UserAdapter(it) }
-        binding.rvUsers.adapter = userAdapter
+    private fun manageViewModel(adapter: UserAdapter) {
+        userListViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(UserListViewModel::class.java)
 
-        userAdapter?.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: UserItem) {
+        showLoading(true)
+        userListViewModel.searchUser("salsa")
 
+        userListViewModel.getUsers().observe(viewLifecycleOwner, { userItems ->
+            if (userItems != null) {
+                adapter.setUserList(userItems)
+                showLoading(false)
             }
         })
     }

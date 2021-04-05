@@ -7,10 +7,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.salsahava.githubuser.databinding.ItemUserBinding
 
-class UserAdapter(private val listUser: List<UserItem>) :
-    RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
+class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
 
+    private val userList = ArrayList<UserItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setUserList(userItems: ArrayList<UserItem>) {
+        userList.clear()
+        userList.addAll(userItems)
+        notifyDataSetChanged()
+    }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -26,10 +32,10 @@ class UserAdapter(private val listUser: List<UserItem>) :
     }
 
     override fun onBindViewHolder(holder: UserAdapter.ListViewHolder, position: Int) {
-        holder.bind(listUser[position])
+        holder.bind(userList[position])
     }
 
-    override fun getItemCount(): Int = listUser.size
+    override fun getItemCount(): Int = userList.size
 
     inner class ListViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserItem) {
