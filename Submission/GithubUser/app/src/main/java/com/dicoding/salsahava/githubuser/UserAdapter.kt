@@ -1,7 +1,6 @@
 package com.dicoding.salsahava.githubuser
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -9,9 +8,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.dicoding.salsahava.githubuser.databinding.ItemUserBinding
 
 class UserAdapter(private val listUser: ArrayList<User>) :
-    RecyclerView.Adapter<UserAdapter.CardViewViewHolder>() {
+    RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
 
-    private lateinit var onItemClickCallback: OnItemClickCallback
+    private var onItemClickCallback: OnItemClickCallback? = null
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -20,38 +19,34 @@ class UserAdapter(private val listUser: ArrayList<User>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): UserAdapter.CardViewViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
-        return CardViewViewHolder(view)
+    ): UserAdapter.ListViewHolder {
+
+        val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ListViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: UserAdapter.CardViewViewHolder, position: Int) {
-        val user = listUser[position]
+    override fun onBindViewHolder(holder: UserAdapter.ListViewHolder, position: Int) {
+        holder.bind(listUser[position])
+    }
 
-        Glide.with(holder.itemView.context)
-            .load(user.avatar)
-            .apply(RequestOptions().override(64, 64))
-            .into(holder.imgAvatar)
+    override fun getItemCount(): Int = listUser.size
 
-        holder.tvName.text = user.name
-        holder.tvUsername.text = user.username
+    inner class ListViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: User) {
+            with (binding) {
+                Glide.with(itemView.context)
+                    .load(user.avatar)
+                    .apply(RequestOptions().override(64, 64))
+                    .into(imgItemPhoto)
 
-        holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
+                tvItemName.text = user.name
+                tvItemUsername.text = user.username
+
+                itemView.setOnClickListener {
+                    onItemClickCallback?.onItemClicked(user)
+                }
+            }
         }
-    }
-
-    override fun getItemCount(): Int {
-        return listUser.size
-    }
-
-    inner class CardViewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemUserBinding.bind(itemView)
-
-        var imgAvatar = binding.imgItemPhoto
-        var tvName = binding.tvItemName
-        var tvUsername = binding.tvItemUsername
     }
 
     interface OnItemClickCallback {
