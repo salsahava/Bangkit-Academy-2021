@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.salsahava.githubuser.databinding.ItemUserBinding
 
-class UserAdapter(private val listUser: ArrayList<User>) :
+class UserAdapter(private val listUser: List<UserItem>) :
     RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
 
     private var onItemClickCallback: OnItemClickCallback? = null
@@ -32,14 +32,13 @@ class UserAdapter(private val listUser: ArrayList<User>) :
     override fun getItemCount(): Int = listUser.size
 
     inner class ListViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: User) {
+        fun bind(user: UserItem) {
             with (binding) {
                 Glide.with(itemView.context)
-                    .load(user.avatar)
+                    .load(user.avatarUrl)
                     .apply(RequestOptions().override(64, 64))
                     .into(imgItemPhoto)
 
-                tvItemName.text = user.name
                 tvItemUsername.text = user.username
 
                 itemView.setOnClickListener {
@@ -50,6 +49,6 @@ class UserAdapter(private val listUser: ArrayList<User>) :
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: User)
+        fun onItemClicked(data: UserItem)
     }
 }

@@ -34,22 +34,22 @@ class DetailFragment : Fragment() {
     }
 
     private fun manageData() {
-        if (arguments != null) {
-            val user = arguments?.getParcelable<User>(EXTRA_USER) as User
-
-            Glide.with(this)
-                .load(user.avatar)
-                .into(binding.imgAvatar)
-
-            binding.tvName.text = user.name
-            binding.tvUsername.text = user.username
-            binding.tvLocation.text = user.location
-            binding.tvCompany.text = user.company
-            binding.tvFollowers.text = user.followers
-            binding.tvFollowing.text = user.following
-            binding.tvRepositories.text = user.repositories
-
-            (activity as AppCompatActivity).supportActionBar?.title = user.username
-        }
+//        if (arguments != null) {
+//            val user = arguments?.getParcelable<User>(EXTRA_USER) as User
+//
+//            Glide.with(this)
+//                .load(user.avatar)
+//                .into(binding.imgAvatar)
+//
+////            binding.tvName.text = user.name
+////            binding.tvUsername.text = user.username
+////            binding.tvLocation.text = user.location
+////            binding.tvCompany.text = user.company
+////            binding.tvFollowers.text = user.followers
+////            binding.tvFollowing.text = user.following
+////            binding.tvRepositories.text = user.repositories
+//
+//            (activity as AppCompatActivity).supportActionBar?.title = user.username
+//        }
     }
 }
