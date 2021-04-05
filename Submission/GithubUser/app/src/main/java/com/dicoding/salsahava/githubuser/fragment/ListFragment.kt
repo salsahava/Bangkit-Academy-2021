@@ -1,11 +1,14 @@
 package com.dicoding.salsahava.githubuser.fragment
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.salsahava.githubuser.*
@@ -43,24 +46,40 @@ class ListFragment : Fragment() {
             }
         })
 
-        manageViewModel(userAdapter)
-
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
-    }
-
-    private fun manageViewModel(adapter: UserAdapter) {
         userListViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(UserListViewModel::class.java)
 
-        showLoading(true)
-        userListViewModel.searchUser("salsa")
+        searchUser()
 
         userListViewModel.getUsers().observe(viewLifecycleOwner, { userItems ->
             if (userItems != null) {
-                adapter.setUserList(userItems)
+                userAdapter.setUserList(userItems)
                 showLoading(false)
+            }
+        })
+
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
+    }
+
+    private fun searchUser() {
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = binding.svUser
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        searchView.setIconifiedByDefault(false)
+        searchView.queryHint = "Enter Username"
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                showLoading(true)
+                userListViewModel.setUserList(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
             }
         })
     }

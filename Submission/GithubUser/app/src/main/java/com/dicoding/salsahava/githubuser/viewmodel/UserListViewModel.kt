@@ -15,9 +15,9 @@ import retrofit2.Response
 class UserListViewModel : ViewModel() {
     val listUser = MutableLiveData<ArrayList<UserItem>>()
 
-    fun searchUser(user: String) {
+    fun setUserList(user: String) {
         val githubService = UserData.create()
-        githubService.findUser("salsa").enqueue(object : Callback<SearchResponse> {
+        githubService.findUser(user).enqueue(object : Callback<SearchResponse> {
             override fun onResponse(
                 call: Call<SearchResponse>,
                 response: Response<SearchResponse>
