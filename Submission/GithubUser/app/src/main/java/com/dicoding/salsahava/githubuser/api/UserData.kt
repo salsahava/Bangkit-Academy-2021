@@ -1,4 +1,4 @@
-package com.dicoding.salsahava.githubuser
+package com.dicoding.salsahava.githubuser.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

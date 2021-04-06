@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">Github Users</string>
 
-    <string name="followers">FOLLOWERS</string>
-    <string name="following">FOLLOWING</string>
     <string name="repositories">REPOSITORIES</string>
-    <string name="dummy_location">Sydney, Australia</string>
-    <string name="works_at">Works at</string>
-    <string name="dummy_company">JVMDeveloperID @KotlinID @IDDevOps</string>
     <string name="app_logo">App Logo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_followers">Followers</string>
+    <string name="tab_following">Following</string>
+
+    <string name="dummy_location">Sydney, Australia</string>
+    <string name="dummy_company">JVMDeveloperID @KotlinID @IDDevOps</string>
 
 </resources>
 
