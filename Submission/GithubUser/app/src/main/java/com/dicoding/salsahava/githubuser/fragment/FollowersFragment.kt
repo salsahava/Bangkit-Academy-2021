@@ -38,7 +38,7 @@ class FollowersFragment : Fragment() {
         binding.rvFollowers.adapter = adapter
 
         followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
-        followersViewModel.setFollowersList("sidiqpurnama")
+        followersViewModel.setFollowersList("sidiqpermana")
         followersViewModel.getFollowers().observe(viewLifecycleOwner, { followers ->
             if (followers != null) {
                 adapter.setFollowerList(followers)

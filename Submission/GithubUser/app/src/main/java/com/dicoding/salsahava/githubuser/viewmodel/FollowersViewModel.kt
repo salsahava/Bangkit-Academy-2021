@@ -22,7 +22,6 @@ class FollowersViewModel : ViewModel() {
             ) {
                 try {
                     val followers = response.body()
-                    Log.d("Response", followers.toString())
                     listFollowers.postValue(followers)
                 } catch (e: Exception) {
                     Log.d("onResponse: Exception", e.message.toString())
@@ -32,7 +31,6 @@ class FollowersViewModel : ViewModel() {
             override fun onFailure(call: Call<ArrayList<Follower>>, error: Throwable) {
                 Log.d("onFailure", error.message.toString())
             }
-
         })
     }
 
