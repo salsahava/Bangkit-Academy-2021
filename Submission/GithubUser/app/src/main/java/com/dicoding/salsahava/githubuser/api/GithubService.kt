@@ -14,12 +14,15 @@ interface GithubService {
     fun findUser(@Query("q") username: String): Call<SearchResponse>
 
     @GET("users/{username}")
+    @Headers("Authorization: token ${BuildConfig.GITHUB_API_TOKEN}")
     fun getUser(@Path("username") username: String): Call<User>
 
     @GET("users/{username}/followers")
+    @Headers("Authorization: token ${BuildConfig.GITHUB_API_TOKEN}")
     fun getFollowers(@Path("username") username: String): Call<ArrayList<Follower>>
 
     @GET("users/{username}/following")
+    @Headers("Authorization: token ${BuildConfig.GITHUB_API_TOKEN}")
     fun getFollowing(@Path("username") username: String): Call<ArrayList<Following>>
 
 }

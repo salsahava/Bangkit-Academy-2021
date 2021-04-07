@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import com.dicoding.salsahava.githubuser.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
+    private lateinit var splashActivityBinding: ActivitySplashScreenBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+
+        splashActivityBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(splashActivityBinding.root)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -21,5 +26,6 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 2000)
+
     }
 }

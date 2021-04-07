@@ -26,7 +26,6 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentListBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -70,7 +69,6 @@ class ListFragment : Fragment() {
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView.setIconifiedByDefault(false)
-        searchView.queryHint = "Enter Username"
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {

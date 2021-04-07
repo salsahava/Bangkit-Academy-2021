@@ -14,7 +14,7 @@ import com.dicoding.salsahava.githubuser.viewmodel.FollowersViewModel
 class FollowersFragment : Fragment() {
 
     companion object {
-        private val ARG_USERNAME = "username"
+        private const val ARG_USERNAME = "username"
 
         fun newInstance(username: String): FollowersFragment {
             val fragment = FollowersFragment()
@@ -33,8 +33,7 @@ class FollowersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentFollowersBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -51,7 +50,10 @@ class FollowersFragment : Fragment() {
         adapter.notifyDataSetChanged()
         binding.rvFollowers.adapter = adapter
 
-        followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
+        followersViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FollowersViewModel::class.java)
         showLoading(true)
         if (username != null) followersViewModel.setFollowersList(username)
         followersViewModel.getFollowers().observe(viewLifecycleOwner, { followers ->

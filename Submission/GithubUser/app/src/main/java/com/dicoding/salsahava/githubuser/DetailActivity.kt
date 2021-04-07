@@ -46,16 +46,16 @@ class DetailActivity : AppCompatActivity() {
         githubService.getUser(username).enqueue(object : Callback<User> {
             override fun onResponse(call: retrofit2.Call<User>, response: Response<User>) {
                 try {
-                    val response = response.body()
+                    val detailResponse = response.body()
 
                     Glide.with(this@DetailActivity)
-                        .load(response?.avatarUrl)
+                        .load(detailResponse?.avatarUrl)
                         .into(binding.imgAvatar)
 
-                    binding.tvName.text = response?.name
-                    binding.tvUsername.text = response?.username
-                    binding.tvLocation.text = response?.location
-                    binding.tvCompany.text = response?.company
+                    binding.tvName.text = detailResponse?.name
+                    binding.tvUsername.text = detailResponse?.username
+                    binding.tvLocation.text = detailResponse?.location
+                    binding.tvCompany.text = detailResponse?.company
 
                     showLoading(false)
                 } catch (e: Exception) {

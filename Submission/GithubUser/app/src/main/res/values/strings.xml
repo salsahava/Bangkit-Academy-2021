@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">Github Users</string>
+    <string name="app_name" translatable="false">Github Users</string>
 
-    <string name="repositories">REPOSITORIES</string>
     <string name="app_logo">App Logo</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tab_followers">Followers</string>
     <string name="tab_following">Following</string>
+    <string name="enter_username">Enter username</string>
+    <string name="change_lang_settings">Change Language Settings</string>
 
-    <string name="dummy_location">Sydney, Australia</string>
-    <string name="dummy_company">JVMDeveloperID @KotlinID @IDDevOps</string>
+    <string name="dummy_location" translatable="false">Sydney, Australia</string>
+    <string name="dummy_company" translatable="false">JVMDeveloperID @KotlinID @IDDevOps</string>
 
 </resources>
 
