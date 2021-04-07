@@ -36,7 +36,9 @@ class DetailActivity : AppCompatActivity() {
         username?.let { showDetail(it) }
         showLoading(true)
 
-        showTabLayout()
+        username?.let { showTabLayout(it) }
+
+        supportActionBar?.title = username
     }
 
     private fun showDetail(username: String) {
@@ -67,10 +69,12 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun showTabLayout() {
+    private fun showTabLayout(uname: String) {
         val pagerAdapter = PagerAdapter(this)
+        pagerAdapter.username = uname
         val viewPager: ViewPager2 = binding.viewPager
         viewPager.adapter = pagerAdapter
+
         val tabs: TabLayout = binding.tabs
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])

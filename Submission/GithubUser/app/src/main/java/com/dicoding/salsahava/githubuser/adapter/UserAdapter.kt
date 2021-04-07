@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.salsahava.githubuser.Follower
+import com.dicoding.salsahava.githubuser.Following
 import com.dicoding.salsahava.githubuser.UserItem
 import com.dicoding.salsahava.githubuser.databinding.ItemUserBinding
 
@@ -23,8 +24,17 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     fun setFollowerList(followers: ArrayList<Follower>) {
         userList.clear()
         for (item in followers) {
-            val follower = UserItem(username = item.username, avatarUrl = item.avatarUrl)
-            userList.add(follower)
+            val userItem = UserItem(username = item.username, avatarUrl = item.avatarUrl)
+            userList.add(userItem)
+        }
+        notifyDataSetChanged()
+    }
+
+    fun setFollowingList(following: ArrayList<Following>) {
+        userList.clear()
+        for (item in following) {
+            val userItem = UserItem(username = item.username, avatarUrl = item.avatarUrl)
+            userList.add(userItem)
         }
         notifyDataSetChanged()
     }
