@@ -22,6 +22,10 @@ data class User(
     val name: String,
     val company: String,
     val location: String,
+    val followers: Int,
+    val following: Int,
+    @SerializedName("public_repos")
+    val repos: Int
 )
 
 data class Follower(
