@@ -56,6 +56,9 @@ class DetailActivity : AppCompatActivity() {
                     binding.tvUsername.text = detailResponse?.username
                     binding.tvLocation.text = detailResponse?.location
                     binding.tvCompany.text = detailResponse?.company
+                    binding.tvFollowers.text = detailResponse?.followers.toString()
+                    binding.tvFollowing.text = detailResponse?.following.toString()
+                    binding.tvRepos.text = detailResponse?.repos.toString()
 
                     showLoading(false)
                 } catch (e: Exception) {
