@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.commit
 
 class CategoryFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
@@ -33,11 +34,10 @@ class CategoryFragment : Fragment(), View.OnClickListener {
             mDetailCategoryFragment.arguments = mBundle
             mDetailCategoryFragment.description = description
 
-            val mFragmentManager = fragmentManager
-            mFragmentManager?.beginTransaction()?.apply {
-                replace(R.id.frame_container, mDetailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
+            val mFragmentManager = parentFragmentManager
+            mFragmentManager.commit {
                 addToBackStack(null)
-                commit()
+                replace(R.id.frame_container, mDetailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
             }
         }
     }
