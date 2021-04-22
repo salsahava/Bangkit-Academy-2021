@@ -6,4 +6,5 @@
     <string name="enter_username">Masukkan nama pengguna</string>
     <string name="change_lang_settings">Ubah Pengaturan Bahasa</string>
     <string name="repositories">Repositori</string>
+    <string name="favorite">Favorit</string>
 </resources>
