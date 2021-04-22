@@ -55,7 +55,7 @@ class ListFragment : Fragment() {
         })
 
         userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: UserItem) {
+            override fun onItemClicked(data: UserItem, position: Int) {
                 val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.EXTRA_USERNAME, data.username)
                 startActivity(intent)

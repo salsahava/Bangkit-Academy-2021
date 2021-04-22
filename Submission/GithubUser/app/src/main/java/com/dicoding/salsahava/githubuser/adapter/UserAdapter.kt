@@ -39,6 +39,22 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun addItem(user: UserItem) {
+        userList.add(user)
+        notifyItemInserted(userList.size - 1)
+    }
+
+    fun updateItem(position: Int, user: UserItem) {
+        userList[position] = user
+        notifyItemChanged(position, user)
+    }
+
+    fun removeItem(position: Int) {
+        userList.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, userList.size)
+    }
+
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
@@ -63,7 +79,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
         holder.tvItemUsername.text = user.username
 
         holder.itemView.setOnClickListener {
-            onItemClickCallback?.onItemClicked(user)
+            onItemClickCallback?.onItemClicked(user, position)
         }
     }
 
@@ -75,6 +91,6 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserItem)
+        fun onItemClicked(data: UserItem, position: Int)
     }
 }
