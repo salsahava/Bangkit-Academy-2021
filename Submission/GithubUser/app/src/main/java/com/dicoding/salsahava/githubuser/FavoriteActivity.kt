@@ -2,11 +2,11 @@ package com.dicoding.salsahava.githubuser
 
 import android.content.Intent
 import android.database.ContentObserver
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.salsahava.githubuser.adapter.UserAdapter
 import com.dicoding.salsahava.githubuser.database.DatabaseContract.FavoriteUserColumns.Companion.CONTENT_URI
@@ -51,7 +51,8 @@ class FavoriteActivity : AppCompatActivity() {
         contentResolver.registerContentObserver(CONTENT_URI, true, observer)
 
         if (savedInstanceState == null) loadFavUsersAsync()
-        else savedInstanceState.getParcelableArrayList<UserItem>(EXTRA_STATE)?.also { adapter.setUserList(it) }
+        else savedInstanceState.getParcelableArrayList<UserItem>(EXTRA_STATE)
+            ?.also { adapter.setUserList(it) }
 
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: UserItem) {

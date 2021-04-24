@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_logo">Logo Aplikasi</string>
+    <string name="tab_followers">Pengikut</string>
+    <string name="tab_following">Mengikuti</string>
+    <string name="repositories">Repositori</string>
+    <string name="favorite">Favorit</string>
+    <string name="fav_users">Pengguna Favorit Aplikasi Konsumen</string>
+    <string name="add_success">%s dimasukkan ke Pengguna Favorit</string>
+    <string name="delete_success">%s dihapus dari Pengguna Favorit</string>
+    <string name="no_data">Tidak ada data saat ini</string>
+</resources>

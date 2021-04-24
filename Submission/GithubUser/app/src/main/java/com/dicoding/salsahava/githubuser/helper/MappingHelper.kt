@@ -11,25 +11,14 @@ object MappingHelper {
         cursor?.apply {
             while (moveToNext()) {
                 val id = getInt(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns._ID))
-                val username = getString(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns.USERNAME))
-                val avatarUrl = getString(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns.AVATAR_URL))
+                val username =
+                    getString(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns.USERNAME))
+                val avatarUrl =
+                    getString(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns.AVATAR_URL))
 
                 favUserList.add(UserItem(id, username, avatarUrl))
             }
         }
         return favUserList
-    }
-
-    fun mapCursorToObject(cursor: Cursor?): UserItem? {
-        var favUser: UserItem? = null
-        cursor?.apply {
-            moveToFirst()
-            val id = getInt(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns._ID))
-            val username = getString(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns.USERNAME))
-            val avatarUrl = getString(getColumnIndexOrThrow(DatabaseContract.FavoriteUserColumns.AVATAR_URL))
-
-            favUser = UserItem(id, username, avatarUrl)
-        }
-        return favUser
     }
 }

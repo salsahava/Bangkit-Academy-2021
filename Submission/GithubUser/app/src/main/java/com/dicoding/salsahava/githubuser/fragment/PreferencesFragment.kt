@@ -11,7 +11,7 @@ import androidx.preference.SwitchPreference
 import com.dicoding.salsahava.githubuser.R
 import com.dicoding.salsahava.githubuser.receiver.AlarmReceiver
 
-class PreferencesFragment :  PreferenceFragmentCompat(),
+class PreferencesFragment : PreferenceFragmentCompat(),
     SharedPreferences.OnSharedPreferenceChangeListener {
     private lateinit var reminderKey: String
     private lateinit var languageKey: String
@@ -51,11 +51,18 @@ class PreferencesFragment :  PreferenceFragmentCompat(),
         when (key) {
             reminderKey -> {
                 val isStatusOn = sharedPreferences.getBoolean(reminderKey, false)
-                if (isStatusOn) context?.let { alarmReceiver.setRepeatingAlarm(it, "09:00", "Here's your daily reminder to open me! :)") }
+                if (isStatusOn) context?.let {
+                    alarmReceiver.setRepeatingAlarm(
+                        it,
+                        "09:00",
+                        "Here's your daily reminder to open me! :)"
+                    )
+                }
                 else context?.let { alarmReceiver.cancelAlarm(it) }
 
                 context?.let { alarmReceiver.isAlarmSet(it).toString() }?.let {
-                    Log.d("isAlarmSet: ",
+                    Log.d(
+                        "isAlarmSet: ",
                         it
                     )
                 }

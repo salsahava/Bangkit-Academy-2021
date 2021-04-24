@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name" translatable="false">Consumer App</string>
+
+    <string name="app_logo">App Logo</string>
+    <string name="tab_followers">Followers</string>
+    <string name="tab_following">Following</string>
+    <string name="repositories">Repositories</string>
+    <string name="dummy_location" translatable="false">Sydney, Australia</string>
+    <string name="dummy_company" translatable="false">JVMDeveloperID @KotlinID @IDDevOps</string>
+    <string name="dummy_numbers" translatable="false">1234</string>
+    <string name="favorite">Favorite</string>
+    <string name="fav_users">Consumer App\'s Favorite Users</string>
+    <string name="no_data">There are currently no data</string>
+    <string name="add_success">%s added to Favorite Users</string>
+    <string name="delete_success">%s deleted from Favorite Users</string>
+
+</resources>
+
+

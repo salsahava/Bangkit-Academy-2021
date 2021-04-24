@@ -25,7 +25,11 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".PreferencesActivity" />
+        <activity android:name=".PreferencesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
         <provider
             android:name=".provider.FavUserProvider"
@@ -35,12 +39,18 @@
             android:readPermission="com.dicoding.salsahava.githubuser.READ_DATABASE"
             android:writePermission="com.dicoding.salsahava.githubuser.WRITE_DATABASE" />
 
-        <activity android:name=".FavoriteActivity" />
+        <activity android:name=".FavoriteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity android:name=".DetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -50,6 +60,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop" />
