@@ -15,6 +15,9 @@
     <string name="fav_users">Favorite Users</string>
     <string name="add_success">%s added to Favorite Users</string>
     <string name="delete_success">%s deleted from Favorite Users</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="key_reminder">daily_reminder</string>
+    <string name="key_language">language</string>
 
 </resources>
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:iconSpaceReserved="false">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_reminder"
+        android:title="@string/daily_reminder"
+        android:iconSpaceReserved="false" />
+
+    <Preference
+        android:key="@string/key_language"
+        android:title="@string/change_lang_settings" />
+
+</PreferenceScreen>
