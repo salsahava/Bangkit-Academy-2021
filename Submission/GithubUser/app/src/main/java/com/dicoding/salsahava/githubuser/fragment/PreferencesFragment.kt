@@ -4,10 +4,12 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.dicoding.salsahava.githubuser.R
+import com.dicoding.salsahava.githubuser.receiver.AlarmReceiver
 
 class PreferencesFragment :  PreferenceFragmentCompat(),
     SharedPreferences.OnSharedPreferenceChangeListener {
@@ -15,6 +17,7 @@ class PreferencesFragment :  PreferenceFragmentCompat(),
     private lateinit var languageKey: String
     private lateinit var reminderPreference: SwitchPreference
     private lateinit var languagePreference: Preference
+    private lateinit var alarmReceiver: AlarmReceiver
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.preferences)
@@ -30,6 +33,8 @@ class PreferencesFragment :  PreferenceFragmentCompat(),
 
             true
         }
+
+        alarmReceiver = AlarmReceiver()
     }
 
     override fun onResume() {
@@ -42,10 +47,18 @@ class PreferencesFragment :  PreferenceFragmentCompat(),
         preferenceScreen.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
         when (key) {
             reminderKey -> {
+                val isStatusOn = sharedPreferences.getBoolean(reminderKey, false)
+                if (isStatusOn) context?.let { alarmReceiver.setRepeatingAlarm(it, "09:00", "Here's your daily reminder to open me! :)") }
+                else context?.let { alarmReceiver.cancelAlarm(it) }
 
+                context?.let { alarmReceiver.isAlarmSet(it).toString() }?.let {
+                    Log.d("isAlarmSet: ",
+                        it
+                    )
+                }
             }
         }
     }

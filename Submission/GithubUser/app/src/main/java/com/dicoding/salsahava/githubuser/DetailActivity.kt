@@ -15,7 +15,6 @@ import com.dicoding.salsahava.githubuser.api.UserData
 import com.dicoding.salsahava.githubuser.database.DatabaseContract
 import com.dicoding.salsahava.githubuser.database.DatabaseContract.FavoriteUserColumns.Companion.CONTENT_URI
 import com.dicoding.salsahava.githubuser.databinding.ActivityDetailBinding
-import com.dicoding.salsahava.githubuser.helper.MappingHelper
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.*
@@ -53,38 +52,22 @@ class DetailActivity : AppCompatActivity() {
 
         username?.let { showTabLayout(it) }
 
-//        val isFavoriteUser = checkIsFavoriteUser()
-//
-//        binding.fabFav.setOnClickListener {
-//            if (isFavoriteUser) {
-//                setFavoriteStatus(true)
-//                val values = ContentValues()
-//                values.put(DatabaseContract.FavoriteUserColumns._ID, id)
-//                values.put(DatabaseContract.FavoriteUserColumns.USERNAME, username)
-//                values.put(DatabaseContract.FavoriteUserColumns.AVATAR_URL, avatarUrl)
-//
-//                contentResolver.insert(CONTENT_URI, values)
-//                showToastMessage(getString(R.string.add_success, username))
-//            } else {
-//                setFavoriteStatus(false)
-//                val userDeleted = contentResolver.delete(uriWithId, null, null)
-//                Log.d("User Deleted: ", userDeleted.toString())
-//                showToastMessage(getString(R.string.delete_success, username))
-//            }
-//        }
-
         var isFavoriteUser = false
-        CoroutineScope(Dispatchers.IO).launch {
-            uriWithId = Uri.parse("$CONTENT_URI/$id")
-            val cursor = contentResolver.query(uriWithId, null, null, null, null)
+        GlobalScope.launch(Dispatchers.Main) {
+            val deferredFavUser = async(Dispatchers.IO) {
+                uriWithId = Uri.parse("$CONTENT_URI/$id")
+                val cursor = contentResolver.query(uriWithId, null, null, null, null)
+                cursor
+            }
 
-            withContext(Dispatchers.Main) {
-                if (cursor != null) {
+            val user = deferredFavUser.await()
+            if (user != null) {
+                isFavoriteUser = if (user.count > 0) {
                     setFavoriteStatus(true)
-                    isFavoriteUser = true
+                    true
                 } else {
                     setFavoriteStatus(false)
-                    isFavoriteUser = false
+                    false
                 }
             }
         }
@@ -106,6 +89,7 @@ class DetailActivity : AppCompatActivity() {
                 Log.d("User Deleted: ", userDeleted.toString())
                 showToastMessage(getString(R.string.delete_success, username))
             }
+            setFavoriteStatus(isFavoriteUser)
         }
 
         supportActionBar?.title = username
@@ -158,21 +142,6 @@ class DetailActivity : AppCompatActivity() {
         if (isFavorite) binding.fabFav.setImageResource(R.drawable.ic_baseline_favorite_white_24)
         else binding.fabFav.setImageResource(R.drawable.ic_baseline_favorite_border_white_24)
     }
-
-//    private fun checkIsFavoriteUser(): Boolean {
-//        var isFavorite = false
-//        GlobalScope.launch(Dispatchers.Main) {
-//            val deferredFavUser = async(Dispatchers.IO) {
-//                uriWithId = Uri.parse("$CONTENT_URI/$id")
-//                val cursor = contentResolver.query(uriWithId, null, null, null, null)
-//                MappingHelper.mapCursorToObject(cursor)
-//            }
-//
-//            val user = deferredFavUser.await()
-//            isFavorite = user != null
-//        }
-//        return isFavorite
-//    }
 
     private fun showLoading(state: Boolean) {
         if (state) {
