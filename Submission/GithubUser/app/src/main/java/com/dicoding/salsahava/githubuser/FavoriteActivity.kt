@@ -80,7 +80,7 @@ class FavoriteActivity : AppCompatActivity() {
             if (favUsers.size > 0) adapter.setUserList(favUsers)
             else {
                 adapter.setUserList(ArrayList())
-                showSnackBarMessage("There are currently no data")
+                showSnackBarMessage(getString(R.string.no_data))
             }
         }
     }

@@ -10,4 +10,7 @@
     <string name="fav_users">Pengguna Favorit</string>
     <string name="add_success">%s dimasukkan ke Pengguna Favorit</string>
     <string name="delete_success">%s dihapus dari Pengguna Favorit</string>
+    <string name="no_data">Tidak ada data saat ini</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="settings">Pengaturan</string>
 </resources>

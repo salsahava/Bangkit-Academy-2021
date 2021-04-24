@@ -18,6 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
+        <activity android:name=".PreferencesActivity"></activity>
+
         <provider
             android:name=".provider.FavUserProvider"
             android:authorities="com.dicoding.salsahava.githubuser"

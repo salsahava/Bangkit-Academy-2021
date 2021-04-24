@@ -5,12 +5,12 @@
     <item
         android:id="@+id/action_open_favorite"
         android:icon="@drawable/ic_baseline_favorite_white_24"
-        android:title="Favorite Users"
+        android:title="@string/fav_users"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/action_change_lang_settings"
+        android:id="@+id/action_change_settings"
         android:icon="@drawable/ic_baseline_settings_black_24"
-        android:title="@string/change_lang_settings"
+        android:title="@string/settings"
         app:showAsAction="always" />
 </menu>

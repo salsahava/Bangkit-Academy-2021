@@ -23,6 +23,13 @@ class PreferencesFragment :  PreferenceFragmentCompat(),
         languageKey = getString(R.string.key_language)
         reminderPreference = findPreference<SwitchPreference>(reminderKey) as SwitchPreference
         languagePreference = findPreference<Preference>(languageKey) as Preference
+
+        languagePreference.setOnPreferenceClickListener {
+            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(intent)
+
+            true
+        }
     }
 
     override fun onResume() {
@@ -39,10 +46,6 @@ class PreferencesFragment :  PreferenceFragmentCompat(),
         when (key) {
             reminderKey -> {
 
-            }
-            languageKey -> {
-                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                startActivity(intent)
             }
         }
     }

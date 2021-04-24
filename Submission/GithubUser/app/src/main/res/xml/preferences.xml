@@ -4,11 +4,12 @@
 
     <SwitchPreference
         android:defaultValue="false"
+        android:icon="@drawable/ic_baseline_notifications_grey900_24"
         android:key="@string/key_reminder"
-        android:title="@string/daily_reminder"
-        android:iconSpaceReserved="false" />
+        android:title="@string/daily_reminder" />
 
     <Preference
+        android:icon="@drawable/ic_baseline_language_grey900_24"
         android:key="@string/key_language"
         android:title="@string/change_lang_settings" />
 
