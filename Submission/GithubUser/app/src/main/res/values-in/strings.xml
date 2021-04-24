@@ -7,4 +7,7 @@
     <string name="change_lang_settings">Ubah Pengaturan Bahasa</string>
     <string name="repositories">Repositori</string>
     <string name="favorite">Favorit</string>
+    <string name="fav_users">Pengguna Favorit</string>
+    <string name="add_success">%s dimasukkan ke Pengguna Favorit</string>
+    <string name="delete_success">%s dihapus dari Pengguna Favorit</string>
 </resources>

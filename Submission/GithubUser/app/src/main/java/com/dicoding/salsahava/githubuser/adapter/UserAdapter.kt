@@ -12,7 +12,7 @@ import com.dicoding.salsahava.githubuser.databinding.ItemUserBinding
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
 
-    private val userList = ArrayList<UserItem>()
+    val userList = ArrayList<UserItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
     fun setUserList(userItems: ArrayList<UserItem>) {
@@ -24,7 +24,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     fun setFollowerList(followers: ArrayList<Follower>) {
         userList.clear()
         for (item in followers) {
-            val userItem = UserItem(username = item.username, avatarUrl = item.avatarUrl)
+            val userItem = UserItem(id = item.id, username = item.username, avatarUrl = item.avatarUrl)
             userList.add(userItem)
         }
         notifyDataSetChanged()
@@ -33,26 +33,10 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     fun setFollowingList(following: ArrayList<Following>) {
         userList.clear()
         for (item in following) {
-            val userItem = UserItem(username = item.username, avatarUrl = item.avatarUrl)
+            val userItem = UserItem(id = item.id, username = item.username, avatarUrl = item.avatarUrl)
             userList.add(userItem)
         }
         notifyDataSetChanged()
-    }
-
-    fun addItem(user: UserItem) {
-        userList.add(user)
-        notifyItemInserted(userList.size - 1)
-    }
-
-    fun updateItem(position: Int, user: UserItem) {
-        userList[position] = user
-        notifyItemChanged(position, user)
-    }
-
-    fun removeItem(position: Int) {
-        userList.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, userList.size)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -79,7 +63,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
         holder.tvItemUsername.text = user.username
 
         holder.itemView.setOnClickListener {
-            onItemClickCallback?.onItemClicked(user, position)
+            onItemClickCallback?.onItemClicked(user)
         }
     }
 
@@ -91,6 +75,6 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserItem, position: Int)
+        fun onItemClicked(data: UserItem)
     }
 }

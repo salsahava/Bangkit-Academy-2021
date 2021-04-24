@@ -8,17 +8,11 @@ import com.dicoding.salsahava.githubuser.database.DatabaseContract.FavoriteUserC
 internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private const val DATABASE_NAME = "dbfavuser"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 4
         private const val SQL_CREATE_TABLE_FAV_USER = "CREATE TABLE $TABLE_NAME" +
-                "(${DatabaseContract.FavoriteUserColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "(${DatabaseContract.FavoriteUserColumns._ID} INTEGER PRIMARY KEY," +
                 "${DatabaseContract.FavoriteUserColumns.USERNAME} TEXT NOT NULL," +
-                "${DatabaseContract.FavoriteUserColumns.AVATAR_URL} TEXT NOT NULL," +
-                "${DatabaseContract.FavoriteUserColumns.NAME} TEXT NOT NULL," +
-                "${DatabaseContract.FavoriteUserColumns.COMPANY} TEXT NOT NULL," +
-                "${DatabaseContract.FavoriteUserColumns.LOCATION} TEXT NOT NULL," +
-                "${DatabaseContract.FavoriteUserColumns.FOLLOWERS} INTEGER NOT NULL," +
-                "${DatabaseContract.FavoriteUserColumns.FOLLOWING} INTEGER NOT NULL," +
-                "${DatabaseContract.FavoriteUserColumns.REPOSITORY} INTEGER NOT NULL)"
+                "${DatabaseContract.FavoriteUserColumns.AVATAR_URL} TEXT)"
     }
 
     override fun onCreate(db: SQLiteDatabase) {

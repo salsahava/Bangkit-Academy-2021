@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.dicoding.salsahava.githubuser.database.DatabaseContract.FavoriteUserColumns.Companion.TABLE_NAME
+import com.dicoding.salsahava.githubuser.database.DatabaseContract.FavoriteUserColumns.Companion.USERNAME
 import com.dicoding.salsahava.githubuser.database.DatabaseContract.FavoriteUserColumns.Companion._ID
 import java.sql.SQLException
 
