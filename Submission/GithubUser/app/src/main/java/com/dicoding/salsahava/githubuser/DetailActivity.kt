@@ -1,17 +1,23 @@
 package com.dicoding.salsahava.githubuser
 
+import android.content.ContentValues
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dicoding.salsahava.githubuser.adapter.PagerAdapter
 import com.dicoding.salsahava.githubuser.api.UserData
+import com.dicoding.salsahava.githubuser.database.DatabaseContract
+import com.dicoding.salsahava.githubuser.database.DatabaseContract.FavoriteUserColumns.Companion.CONTENT_URI
 import com.dicoding.salsahava.githubuser.databinding.ActivityDetailBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.*
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
@@ -19,11 +25,17 @@ import java.lang.Exception
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var uriWithId: Uri
+    private var username: String? = null
+    private var avatarUrl: String? = null
+    private var id: Int = 0
 
     companion object {
         @StringRes
         private val TAB_TITLES = intArrayOf(R.string.tab_followers, R.string.tab_following)
+        var EXTRA_ID = "extra_id"
         var EXTRA_USERNAME = "extra_username"
+        var EXTRA_AVATAR_URL = "extra_avatar_url"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +43,54 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = intent.getStringExtra(EXTRA_USERNAME)
+        username = intent.getStringExtra(EXTRA_USERNAME)
+        avatarUrl = intent.getStringExtra(EXTRA_AVATAR_URL)
+        id = intent.getIntExtra(EXTRA_ID, 0)
 
         username?.let { showDetail(it) }
         showLoading(true)
 
         username?.let { showTabLayout(it) }
+
+        var isFavoriteUser = false
+        GlobalScope.launch(Dispatchers.Main) {
+            val deferredFavUser = async(Dispatchers.IO) {
+                uriWithId = Uri.parse("$CONTENT_URI/$id")
+                val cursor = contentResolver.query(uriWithId, null, null, null, null)
+                cursor
+            }
+
+            val user = deferredFavUser.await()
+            if (user != null) {
+                isFavoriteUser = if (user.count > 0) {
+                    setFavoriteStatus(true)
+                    true
+                } else {
+                    setFavoriteStatus(false)
+                    false
+                }
+            }
+        }
+
+        binding.fabFav.setOnClickListener {
+            isFavoriteUser = !isFavoriteUser
+            if (isFavoriteUser) {
+                setFavoriteStatus(true)
+                val values = ContentValues()
+                values.put(DatabaseContract.FavoriteUserColumns._ID, id)
+                values.put(DatabaseContract.FavoriteUserColumns.USERNAME, username)
+                values.put(DatabaseContract.FavoriteUserColumns.AVATAR_URL, avatarUrl)
+
+                contentResolver.insert(CONTENT_URI, values)
+                showToastMessage(getString(R.string.add_success, username))
+            } else {
+                setFavoriteStatus(false)
+                val userDeleted = contentResolver.delete(uriWithId, null, null)
+                Log.d("User Deleted: ", userDeleted.toString())
+                showToastMessage(getString(R.string.delete_success, username))
+            }
+            setFavoriteStatus(isFavoriteUser)
+        }
 
         supportActionBar?.title = username
     }
@@ -84,11 +138,20 @@ class DetailActivity : AppCompatActivity() {
         }.attach()
     }
 
+    private fun setFavoriteStatus(isFavorite: Boolean) {
+        if (isFavorite) binding.fabFav.setImageResource(R.drawable.ic_baseline_favorite_white_24)
+        else binding.fabFav.setImageResource(R.drawable.ic_baseline_favorite_border_white_24)
+    }
+
     private fun showLoading(state: Boolean) {
         if (state) {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    private fun showToastMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

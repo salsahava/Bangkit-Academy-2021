@@ -18,7 +18,9 @@ class SplashScreenActivity : AppCompatActivity() {
         splashActivityBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(splashActivityBinding.root)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) window.insetsController?.hide(WindowInsets.Type.statusBars())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) window.insetsController?.hide(
+            WindowInsets.Type.statusBars()
+        )
         else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,

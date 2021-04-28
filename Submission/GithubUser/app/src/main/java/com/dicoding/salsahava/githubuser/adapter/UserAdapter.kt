@@ -12,7 +12,7 @@ import com.dicoding.salsahava.githubuser.databinding.ItemUserBinding
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
 
-    private val userList = ArrayList<UserItem>()
+    val userList = ArrayList<UserItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
     fun setUserList(userItems: ArrayList<UserItem>) {
@@ -24,7 +24,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     fun setFollowerList(followers: ArrayList<Follower>) {
         userList.clear()
         for (item in followers) {
-            val userItem = UserItem(username = item.username, avatarUrl = item.avatarUrl)
+            val userItem =
+                UserItem(id = item.id, username = item.username, avatarUrl = item.avatarUrl)
             userList.add(userItem)
         }
         notifyDataSetChanged()
@@ -33,7 +34,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
     fun setFollowingList(following: ArrayList<Following>) {
         userList.clear()
         for (item in following) {
-            val userItem = UserItem(username = item.username, avatarUrl = item.avatarUrl)
+            val userItem =
+                UserItem(id = item.id, username = item.username, avatarUrl = item.avatarUrl)
             userList.add(userItem)
         }
         notifyDataSetChanged()
